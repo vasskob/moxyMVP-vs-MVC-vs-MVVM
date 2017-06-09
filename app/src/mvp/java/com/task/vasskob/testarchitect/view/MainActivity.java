@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.task.vasskob.testarchitect.R;
-import com.task.vasskob.testarchitect.controller.MainView;
 import com.task.vasskob.testarchitect.presenter.MyPresenterImpl;
 
 import butterknife.BindView;

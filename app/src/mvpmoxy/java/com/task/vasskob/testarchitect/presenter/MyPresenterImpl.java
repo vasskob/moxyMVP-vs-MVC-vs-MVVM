@@ -2,7 +2,7 @@ package com.task.vasskob.testarchitect.presenter;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
-import com.task.vasskob.testarchitect.controller.MainView;
+import com.task.vasskob.testarchitect.view.MainView;
 import com.task.vasskob.testarchitect.model.User;
 
 import static com.task.vasskob.testarchitect.Constants.MICHAEL_AVATAR;
