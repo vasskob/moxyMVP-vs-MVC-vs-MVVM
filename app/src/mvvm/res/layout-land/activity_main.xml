@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_margin="20dp"
-            android:onClick="@{viewModel.onBtnClick}"
+            android:onClick="@{viewModel::onBtnClick}"
             android:text="@string/say_hello"
             android:textAllCaps="false"/>
     </LinearLayout>

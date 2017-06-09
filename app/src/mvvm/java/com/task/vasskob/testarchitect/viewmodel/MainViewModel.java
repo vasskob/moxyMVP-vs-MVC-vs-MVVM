@@ -1,6 +1,5 @@
 package com.task.vasskob.testarchitect.viewmodel;
 
-import android.content.Context;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 import android.databinding.BindingAdapter;
@@ -16,22 +15,21 @@ import static com.task.vasskob.testarchitect.Constants.MICHAEL_AVATAR;
 import static com.task.vasskob.testarchitect.Constants.MICHAEL_NAME;
 
 public class MainViewModel extends BaseObservable {
-    private final Context context;
+
     public UserMVVM user;
     private String temp;
-
-    private void setTemp(String temp) {
-        this.temp = temp;
-        notifyPropertyChanged(BR.temp);
-    }
 
     @Bindable
     public String getTemp() {
         return temp;
     }
 
-    public MainViewModel(Context context) {
-        this.context = context;
+    public void setTemp(String temp) {
+        this.temp = temp;
+        notifyPropertyChanged(BR.temp);
+    }
+
+    public MainViewModel() {
         user = new UserMVVM();
     }
 
@@ -39,7 +37,7 @@ public class MainViewModel extends BaseObservable {
         user.setUserID(1);
         user.setName(MICHAEL_NAME);
         user.setAvatarURL(MICHAEL_AVATAR);
-        setTemp(String.format(context.getString(R.string.message), user.getName()));
+        setTemp(String.format(v.getResources().getString(R.string.message), user.getName()));
     }
 
     @BindingAdapter({"imageUrl"})

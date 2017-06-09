@@ -2,10 +2,12 @@ package com.task.vasskob.testarchitect.model;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 import com.task.vasskob.testarchitect.BR;
 
-public class UserMVVM extends BaseObservable {
+public class UserMVVM extends BaseObservable implements Parcelable {
     private int userID;
     private String name;
     private String avatarURL;
@@ -56,4 +58,34 @@ public class UserMVVM extends BaseObservable {
         this.avatarURL = avatarURL;
         notifyPropertyChanged(BR.avatarURL);
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.userID);
+        dest.writeString(this.name);
+        dest.writeString(this.avatarURL);
+    }
+
+    protected UserMVVM(Parcel in) {
+        this.userID = in.readInt();
+        this.name = in.readString();
+        this.avatarURL = in.readString();
+    }
+
+    public static final Parcelable.Creator<UserMVVM> CREATOR = new Parcelable.Creator<UserMVVM>() {
+        @Override
+        public UserMVVM createFromParcel(Parcel source) {
+            return new UserMVVM(source);
+        }
+
+        @Override
+        public UserMVVM[] newArray(int size) {
+            return new UserMVVM[size];
+        }
+    };
 }
