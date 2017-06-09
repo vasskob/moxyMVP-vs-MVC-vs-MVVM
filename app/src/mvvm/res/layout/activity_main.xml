@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.task.vasskob.testarchitect.viewmodel.MainViewModel">
+        </variable>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="100dp"
+            android:contentDescription="@string/app_name"
+            tools:background="@color/colorAccent"
+            tools:imageUrl="@{viewModel.user.avatarURL}"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="50dp"
+            android:text="@{viewModel.temp}"
+            android:textSize="20sp"
+            tools:text="Hello World!"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:onClick="@{viewModel.onBtnClick}"
+            android:text="@string/say_hello"
+            android:textAllCaps="false"/>
+
+    </LinearLayout>
+</layout>

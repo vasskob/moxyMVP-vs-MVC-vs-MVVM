@@ -2,7 +2,6 @@ package com.task.vasskob.testarchitect.controller;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -22,8 +21,6 @@ import static com.task.vasskob.testarchitect.Constants.STATE_Photo;
 // Activity is a Controller & View in the same time
 public class MainActivity extends AppCompatActivity {
 
-    private static final String TAG = MainActivity.class.getSimpleName();
-
     @BindView(R.id.tv_msg)
     CustomTextView tvMsg;
 
@@ -35,17 +32,18 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_say_hello)
     void onBtnClick() {
-        msg = String.format(getResources().getString(R.string.message), user.getName());
-        photo = user.getAvatarURL();
-        showMessage(msg);
-        showPhoto(photo);
+        String temp = getResources().getString(R.string.message);
+        showMessage(String.format(temp, user.getName()));
+        showPhoto(user.getAvatarURL());
     }
 
     private void showMessage(String msg) {
+        this.msg = msg;
         tvMsg.setText(msg);
     }
 
     private void showPhoto(String photo) {
+        this.photo = photo;
         Glide.with(this)
                 .load(photo)
                 .into(ivAvatar);
@@ -61,18 +59,15 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        Log.d(TAG, "onSaveInstanceState: msg= " + msg);
+        super.onSaveInstanceState(outState);
         outState.putString(STATE_MSG, msg);
         outState.putString(STATE_Photo, photo);
-        super.onSaveInstanceState(outState);
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        msg = savedInstanceState.getString(STATE_MSG);
-        photo = savedInstanceState.getString(STATE_Photo);
-        showMessage(msg);
-        showPhoto(photo);
+        showMessage(savedInstanceState.getString(STATE_MSG));
+        showPhoto(savedInstanceState.getString(STATE_Photo));
     }
 }

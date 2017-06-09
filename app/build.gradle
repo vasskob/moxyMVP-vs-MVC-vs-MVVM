@@ -35,6 +35,9 @@ android {
             versionName defaultConfig.versionName + "-mvvm"
         }
     }
+    dataBinding {
+        enabled true
+    }
 }
 
 dependencies {
